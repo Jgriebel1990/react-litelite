@@ -6,29 +6,50 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      box: 
+      currentColor: '#ff0000',
+      boxes:[
         {
-          backgroundColor: '',
-        }
+          backgroundColor: ''
+        },
+        {
+          backgroundColor: ''
+        },
+        {
+          backgroundColor: ''
+        },
+      ]
     }
-    this.changeColor = this.changeColor.bind(this)
+    this.changeColor = this.changeColor.bind(this);
+    this.setSelectedColor = this.setSelectedColor.bind(this);
   }
-  changeColor(){
+  changeColor(position){
+    const currentBox = this.state.boxes[position];
+    const first = this.state.boxes.splice(0, position);
+    const last = this.state.boxes.splice(position +1);
     const newBox = {
-      backgroundColor: 'green'
+      ...currentBox,
+      backgroundColor: this.state.currentColor
+      
     }
-    this.setState({box: newBox})
+    const newBoxes = [
+      ...first,
+      newBox,
+      ...last,
+    ]  
+    this.setState({boxes: newBoxes});
   }
   render() {
-   
-    
+    const boxes = this.state.boxes.map((box, index) => <div key={index}
+                                                        className='col-md-1 box' 
+                                                        style={box}
+                                                        onClick={() => this.changeColor(index)}></div>)
     return (
       <div className='container'>
         <div className='row'>
-          <div 
-              onClick={this.changeColor} 
-              className='col-md-1 box' 
-              style={this.state.box}></div>
+        <input type="color"
+        value={this.state.currentColor}
+                onChange={(e) => this.setSelectedColor(e)}/>
+          
         </div>
       </div>
     );
