@@ -9,13 +9,15 @@ class App extends Component {
       box: 
         {
           backgroundColor: '',
-          color:'red',
         }
     }
     this.changeColor = this.changeColor.bind(this)
   }
   changeColor(){
-    console.log('here');
+    const newBox = {
+      backgroundColor: 'green'
+    }
+    this.setState({box: newBox})
   }
   render() {
    
@@ -23,7 +25,10 @@ class App extends Component {
     return (
       <div className='container'>
         <div className='row'>
-          <div onClick={this.changeColor} className='col-md-1 box' style={this.state.box}></div>
+          <div 
+              onClick={this.changeColor} 
+              className='col-md-1 box' 
+              style={this.state.box}></div>
         </div>
       </div>
     );
