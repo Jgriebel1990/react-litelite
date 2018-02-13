@@ -12,10 +12,10 @@ class App extends Component {
           color:'red',
         }
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.changeColor = this.changeColor.bind(this)
   }
-  handleClick(){
-    this.setState =
+  changeColor(){
+    console.log('here');
   }
   render() {
    
@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className='container'>
         <div className='row'>
-          <div onClick={this.setState} className='col-md-1 box' style={this.state.box}></div>
+          <div onClick={this.changeColor} className='col-md-1 box' style={this.state.box}></div>
         </div>
       </div>
     );
